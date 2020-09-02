@@ -22,12 +22,7 @@ abstract class Combiner extends Model
 
     public function getMessageTemplate(): MessageCombineInterface
     {
-        return $this->messageTemplate ?? $this->resolveTemplateModel();
-    }
-
-    protected function resolveTemplateModel(): MessageCombineInterface
-    {
-        return $this->messageTemplate = static::$templateModelClass::findForMessageable($this);
+        return $this->messageTemplate;
     }
 
     public function buildView()

@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 interface MessageCombineInterface
 {
-    public static function findForMessageable(Model $messageable);
-
     /**
      * Get the event.
      *
