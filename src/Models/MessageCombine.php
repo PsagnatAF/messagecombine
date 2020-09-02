@@ -6,6 +6,7 @@ use ReflectionClass;
 use ReflectionProperty;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Psagnataf\MessageCombine\Interfaces\MessageCombineInterface;
 
 class MessageCombine extends Model implements MessageCombineInterface
 {
