@@ -2,9 +2,9 @@
 
 namespace Psagnataf\MessageCombine;
 
+use Mustache_Engine;
 use ReflectionClass;
 use ReflectionProperty;
-use Illuminate\Bus\Queueable;
 use Illuminate\Support\HtmlString;
 use Illuminate\Database\Eloquent\Model;
 use Psagnataf\MessageCombine\Models\MessageCombine;
@@ -14,34 +14,40 @@ abstract class Combiner extends Model
 {
     /** @var MessageCombineInterface */
     protected $messageTemplate;
+    protected $messageable;
+    protected $params;
 
     public static function getVariables(): array
     {
         return static::getPublicProperties();
     }
 
-    public function getMessageTemplate(): MessageCombineInterface
+    public function template($event)
     {
-        return $this->messageTemplate;
+        $this->messageable = MessageCombine::where('messageable', static::class)->where('event', $event)->first();
+        if (!is_null($this->messageable)) {
+            return $this->render();
+        }
+        return '';
     }
 
-    public function buildView()
+    public function render()
     {
-        $renderer = $this->getMessageTemplateRenderer();
-
-        $viewData = $this->buildViewData();
-
-        $html = $renderer->renderHtmlLayout($viewData);
-        $text = $renderer->renderTextLayout($viewData);
-
-        return array_filter([
-            'html' => new HtmlString($html),
-            'text' => new HtmlString($text),
-        ]);
+        return $this->combineParams()->build();
     }
 
     public function build()
     {
+        $mustache = new Mustache_Engine(array('entity_flags' => ENT_QUOTES));
+        return $mustache->render($this->messageable->template, $this->params);
+    }
+
+    public function combineParams()
+    {
+        $this->params = [];
+        foreach(static::getPublicProperties() as $param) {
+            $this->params[$param] = $this->$param; 
+        }
         return $this;
     }
 
