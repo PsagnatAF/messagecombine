@@ -1,7 +1,6 @@
 {
     "name": "psagnataf/messagecombine",
     "description": "'Combine messages'",
-    "type": "project",
     "license": "MIT",
     "authors": [
         {
