@@ -13,10 +13,4 @@ interface MessageCombineInterface
      */
     public function getEvent(): string;
 
-    /**
-     * Get the template.
-     *
-     * @return string
-     */
-    public static function getTemplate(): string;
 }
