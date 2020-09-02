@@ -1,0 +1,30 @@
+{
+    "name": "psagnataf/messagecombine",
+    "description": "'Combine messages'",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrii Kovtun",
+            "email": "psagnat.af@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Psagnataf\\MessageCombine\\": "src/"
+        }
+    },
+    "require": {},
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Psagnataf\\MessageCombine\\MessageCombineServiceProvider"
+            ]
+        }
+    }
+}
