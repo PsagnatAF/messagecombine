@@ -18,5 +18,5 @@ interface MessageCombineInterface
      *
      * @return string
      */
-    public function getTemplate(): string;
+    public static function getTemplate(): string;
 }

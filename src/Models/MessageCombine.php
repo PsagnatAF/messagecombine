@@ -10,6 +10,8 @@ use Psagnataf\MessageCombine\Interfaces\MessageCombineInterface;
 
 class MessageCombine extends Model implements MessageCombineInterface
 {
+    protected $table = 'message_combine';
+
     protected $guarded = [];
 
     public function getVariables(): array
