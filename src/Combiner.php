@@ -30,7 +30,7 @@ abstract class Combiner extends Model
         return $this->messageTemplate = static::$templateModelClass::findForMessageable($this);
     }
 
-    protected function buildView()
+    public function buildView()
     {
         $renderer = $this->getMessageTemplateRenderer();
 
@@ -72,8 +72,8 @@ abstract class Combiner extends Model
             ->all();
     }
 
-    protected function getMessageTemplateRenderer(): TemplateMailableRenderer
+    protected function getMessageTemplateRenderer(): CombinerRenderer
     {
-        return app(TemplateMailableRenderer::class, ['templateMailable' => $this]);
+        return app(CombinerRenderer::class, ['templateMessageable' => $this]);
     }
 }
