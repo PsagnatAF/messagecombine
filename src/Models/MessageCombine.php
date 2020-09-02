@@ -16,14 +16,14 @@ class MessageCombine extends Model implements MessageCombineInterface
     {
         $messageableClass = $this->messageable;
 
-        if (! class_exists($messageable)) {
+        if (! class_exists($messageableClass)) {
             return [];
         }
 
         return $messageableClass::getPublicVariables();
     }
 
-    public function findForMessageable(Model $messageable)
+    public static function findForMessageable(Model $messageable)
     {
 
     }
