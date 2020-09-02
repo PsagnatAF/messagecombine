@@ -22,9 +22,9 @@ abstract class Combiner extends Model
         return static::getPublicProperties();
     }
 
-    public function template($event)
+    public function template()
     {
-        $this->messageable = MessageCombine::where('messageable', static::class)->where('event', $event)->first();
+        $this->messageable = MessageCombine::where('messageable', static::class)->where('event', $this->event)->first();
         if (!is_null($this->messageable)) {
             return $this->render();
         }
