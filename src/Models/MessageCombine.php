@@ -23,6 +23,11 @@ class MessageCombine extends Model implements MessageCombineInterface
         return $messageableClass::getPublicVariables();
     }
 
+    public function findForMessageable(Model $messageable)
+    {
+
+    }
+
     public function getVariablesAttribute(): array
     {
         return $this->getVariables();
