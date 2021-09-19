@@ -25,6 +25,8 @@ abstract class Combiner extends Model
     public function template()
     {
         $this->messageable = MessageCombine::where('messageable', static::class)->where('event', $this->event)->first();
+        $access = $this->checkAccess();
+        if (!$access) return $access;
         if (!is_null($this->messageable)) {
             return $this->render();
         }
@@ -34,6 +36,11 @@ abstract class Combiner extends Model
     public function render()
     {
         return $this->combineParams()->build();
+    }
+    
+    public function checkAccess()
+    {
+        return isset($this->access) ? $this->access: true;
     }
 
     public function build()
